@@ -64,6 +64,16 @@ class Covid19DataProviderTest {
     }
 
     @Test
+    @DisplayName("state data provider test - return nul")
+    void getStateDataTestNull() {
+
+        when(restTemplate.getForObject(anyString(), any())).thenReturn(null);
+
+        StateData maharashtra = covid19DataProvider.getStateData("Maharashtra");
+        assertNull(maharashtra);
+    }
+
+    @Test
     @DisplayName("summary data test")
     void getSummaryDataTest() {
         when(restTemplate.getForObject(anyString(), any())).thenReturn(getCovidApiDataForSummary());
@@ -79,6 +89,15 @@ class Covid19DataProviderTest {
                 () -> assertEquals(90, data.getConfirmedCasesIndian()),
                 () -> assertNotNull(data.getUpdateTime())
         );
+    }
+
+    @Test
+    @DisplayName("summary data test- returns null")
+    void getSummaryDataTestNull() {
+        when(restTemplate.getForObject(anyString(), any())).thenReturn(null);
+
+        SummaryData data = covid19DataProvider.getSummaryData();
+        assertNull(data);
     }
 
     private CovidApiData getCovidApiData() {

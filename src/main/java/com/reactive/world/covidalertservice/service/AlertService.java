@@ -19,10 +19,10 @@ public class AlertService {
 
     public AlertStatus getAlertAboutState(String state) {
 
-        AlertStatus alertStatus = new AlertStatus();
+        AlertStatus alertStatus = new AlertStatus(); //NOSONAR
 
         //business logic to derive the alert goes here
-        StateData stateData = covid19DataProvider.getStateData(state);
+        StateData stateData = covid19DataProvider.getStateData(state);//NOSONAR
 
         alertStatus.setSummaryData(stateData);
         if (stateData.getTotalConfirmed() < 1000) {

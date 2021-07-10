@@ -50,9 +50,7 @@ class AlertControllerTest {
                 .andReturn();
 
         assertThat(response).isNotNull();
-        String actualResult = response.getResponse().getContentAsString();
-        assertThat(actualResult).isNotNull();
-        assertThat(actualResult).isEqualTo(alertStatusJson);
+        assertThat(response.getResponse().getContentAsString()).isNotNull().isEqualTo(alertStatusJson);
     }
 
     @Test
@@ -70,9 +68,7 @@ class AlertControllerTest {
                 .andReturn();
 
         assertThat(response).isNotNull();
-        String actualResult = response.getResponse().getContentAsString();
-        assertThat(actualResult).isNotNull();
-        assertThat(actualResult).isEqualToIgnoringCase(summaryDataJson);
+        assertThat(response.getResponse().getContentAsString()).isNotNull().isEqualToIgnoringCase(summaryDataJson);
     }
 
     @Test

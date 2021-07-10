@@ -15,7 +15,7 @@ public class CovidAlertServiceApplication {
     }
 
 	@Bean
-	RestTemplate restTemplate(RestTemplateBuilder builder){
-		return builder.build();
+	RestTemplate restTemplate(){
+		return new RestTemplate();
 	}
 }

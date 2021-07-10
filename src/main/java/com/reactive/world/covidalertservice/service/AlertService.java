@@ -3,19 +3,21 @@ package com.reactive.world.covidalertservice.service;
 import com.reactive.world.covidalertservice.dto.AlertStatus;
 import com.reactive.world.covidalertservice.dto.StateData;
 import com.reactive.world.covidalertservice.dto.SummaryData;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class AlertService {
 
-    @Autowired
-    private Covid19DataProvider covid19DataProvider;
+    private final Covid19DataProvider covid19DataProvider;
 
-    public AlertStatus getAlertAboutState(String state) throws IOException {
+    public AlertService(Covid19DataProvider covid19DataProvider) {
+        this.covid19DataProvider = covid19DataProvider;
+    }
+
+    public AlertStatus getAlertAboutState(String state) {
 
         AlertStatus alertStatus = new AlertStatus();
 
@@ -25,7 +27,7 @@ public class AlertService {
         alertStatus.setSummaryData(stateData);
         if (stateData.getTotalConfirmed() < 1000) {
             alertStatus.setAlertLevel("GREEN");
-            alertStatus.setMeasuresToBeTaken(Arrays.asList("Everything is Normal !!"));
+            alertStatus.setMeasuresToBeTaken(Collections.singletonList("Everything is Normal !!"));
         } else if (stateData.getTotalConfirmed() > 1000 && stateData.getTotalConfirmed() < 10000) {
             alertStatus.setAlertLevel("ORANGE");
             alertStatus.setMeasuresToBeTaken(Arrays.asList("Only Essential services are allowed", "List of services that come under essential service"));

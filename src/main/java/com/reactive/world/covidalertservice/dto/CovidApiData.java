@@ -4,7 +4,7 @@ import java.time.ZonedDateTime;
 
 public class CovidApiData {
 
-//    private boolean success;
+    private boolean success;
 
     private CountryData data;
 
@@ -12,13 +12,13 @@ public class CovidApiData {
 
     private ZonedDateTime lastOriginUpdate;
 
-//    public boolean isSuccess() {
-//        return success;
-//    }
-//
-//    public void setSuccess(boolean success) {
-//        this.success = success;
-//    }
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
 
     public CountryData getData() {
         return data;

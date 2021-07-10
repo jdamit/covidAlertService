@@ -3,7 +3,7 @@ package com.reactive.world.covidalertservice.dto;
 import java.util.List;
 
 public class AlertStatus {
-    private String alertLevel;//RED, GREEN, ORNAGE
+    private String alertLevel;//RED, GREEN, ORANGE
 
     private List<String> measuresToBeTaken;
 

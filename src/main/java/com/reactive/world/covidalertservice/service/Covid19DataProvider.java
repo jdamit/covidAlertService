@@ -3,14 +3,10 @@ package com.reactive.world.covidalertservice.service;
 import com.reactive.world.covidalertservice.dto.CovidApiData;
 import com.reactive.world.covidalertservice.dto.StateData;
 import com.reactive.world.covidalertservice.dto.SummaryData;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 @Service
@@ -27,7 +23,7 @@ public class Covid19DataProvider {
 
     static final String URL = "https://api.rootnet.in/covid19-in/stats/latest";
 
-    public StateData getStateData(String state) throws IOException {
+    public StateData getStateData(String state) {
         /*Request request = new Request.Builder().url(URL).build();
         Response response = okHttpClient.newCall(request).execute();*/
 
@@ -41,7 +37,10 @@ public class Covid19DataProvider {
 
         CovidApiData covidApiData = restTemplate.getForObject(URL, CovidApiData.class);
 
-        return covidApiData.getData().getSummary();
+        SummaryData summary = covidApiData.getData().getSummary();
+        summary.setUpdateTime(covidApiData.getLastRefreshed());
+
+        return summary;
     }
 
 

@@ -22,7 +22,7 @@ public class AlertController {
     AlertService alertService;
 
     @GetMapping(path = "/{state}")
-    public AlertStatus getAlertAboutState(@PathVariable String state) throws IOException {
+    public AlertStatus getAlertAboutState(@PathVariable String state) {
         return alertService.getAlertAboutState(state);
     }
 
